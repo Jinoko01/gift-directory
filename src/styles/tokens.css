@@ -1,0 +1,13 @@
+:root {
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f7f9fb;
+  --color-text: #191f28;
+  --color-text-muted: #6b7684;
+  --color-border: #e5e8eb;
+  --color-primary: #3182f6;
+  --color-mint: #e5fbf4;
+  --color-pink: #fff0f5;
+  --color-yellow: #fff8dd;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}

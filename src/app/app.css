@@ -1,0 +1,27 @@
+.appShell {
+  min-height: 100svh;
+  padding: 24px 20px calc(24px + var(--safe-bottom));
+  background: var(--color-background);
+}
+
+.appIntro {
+  display: grid;
+  gap: 12px;
+}
+
+.appIntro h1 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.appIntro p {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.appEyebrow {
+  font-weight: 700;
+  color: var(--color-primary);
+}

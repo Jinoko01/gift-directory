@@ -73,6 +73,7 @@ ui-ux-guide/
 ### Task 1: Project Cleanup and Baseline Commands
 
 **Files:**
+
 - Modify: `package.json`
 - Modify: `src/main.tsx`
 - Create: `src/app/App.tsx`
@@ -273,6 +274,7 @@ git commit -m "chore: reset app baseline"
 ### Task 2: Domain Types and Fixtures
 
 **Files:**
+
 - Create: `src/features/people/peopleTypes.ts`
 - Create: `src/features/people/peopleFixtures.ts`
 - Create: `src/features/recommendations/recommendationTypes.ts`
@@ -403,6 +405,7 @@ git commit -m "feat: define gift domain types"
 ### Task 3: Recommendation Rules with TDD
 
 **Files:**
+
 - Create: `src/features/recommendations/recommendationRules.test.ts`
 - Create: `src/features/recommendations/recommendationRules.ts`
 - Modify: `vite.config.ts`
@@ -567,10 +570,14 @@ export function createGiftRecommendations({
     .filter((template) => template.baseMin >= budget.min)
     .filter((template) => template.baseMax <= budget.max)
     .filter((template) =>
-      person.avoidItems.every((avoidItem) => !template.title.includes(avoidItem)),
+      person.avoidItems.every(
+        (avoidItem) => !template.title.includes(avoidItem),
+      ),
     )
     .map((template) => {
-      const matchedTags = template.tags.filter((tag) => tasteTags.includes(tag));
+      const matchedTags = template.tags.filter((tag) =>
+        tasteTags.includes(tag),
+      );
 
       return {
         id: template.title.replaceAll(" ", "-"),
@@ -605,7 +612,8 @@ function createReason(
   matchedTags: string[],
 ) {
   const occasionLabel = getOccasionLabel(occasion);
-  const tagLabel = matchedTags.length > 0 ? matchedTags.join(", ") : "평소 취향";
+  const tagLabel =
+    matchedTags.length > 0 ? matchedTags.join(", ") : "평소 취향";
 
   return `${personName}님의 ${tagLabel} 취향과 ${occasionLabel} 상황에 잘 맞아요.`;
 }
@@ -663,6 +671,7 @@ git commit -m "feat: add deterministic gift recommendations"
 ### Task 4: Firebase Setup and Data Service
 
 **Files:**
+
 - Create: `.env.example`
 - Create: `src/firebase/firebaseApp.ts`
 - Create: `src/firebase/firestore.ts`
@@ -729,7 +738,9 @@ import type { GiftPerson, GiftPersonInput } from "./peopleTypes";
 
 const fallbackUserId = "anonymous-demo-user";
 
-export async function listPeople(userId = fallbackUserId): Promise<GiftPerson[]> {
+export async function listPeople(
+  userId = fallbackUserId,
+): Promise<GiftPerson[]> {
   const peopleQuery = query(
     collection(firestore, "users", userId, "people"),
     orderBy("updatedAt", "desc"),
@@ -784,6 +795,7 @@ git commit -m "feat: configure firebase data access"
 ### Task 5: Core Reusable UI Components
 
 **Files:**
+
 - Create: `src/components/PersonCard.tsx`
 - Create: `src/components/TasteTagSelector.tsx`
 - Create: `src/components/GiftRecommendationCard.tsx`
@@ -865,7 +877,11 @@ export function PersonCard({ person, onSelect }: PersonCardProps) {
   ].slice(0, 3);
 
   return (
-    <button className="personCard" type="button" onClick={() => onSelect(person)}>
+    <button
+      className="personCard"
+      type="button"
+      onClick={() => onSelect(person)}
+    >
       <span className="personCardHeader">
         <strong>{person.name}</strong>
         <span>{getRelationshipLabel(person.relationship)}</span>
@@ -1021,6 +1037,7 @@ git commit -m "feat: add gift app UI primitives"
 ### Task 6: People List and Profile Creation Flow
 
 **Files:**
+
 - Create: `src/features/people/PeopleListPage.tsx`
 - Create: `src/features/people/PersonProfilePage.tsx`
 - Modify: `src/app/App.tsx`
@@ -1256,7 +1273,10 @@ import { useState } from "react";
 import { PeopleListPage } from "../features/people/PeopleListPage";
 import { PersonProfilePage } from "../features/people/PersonProfilePage";
 import { samplePeople } from "../features/people/peopleFixtures";
-import type { GiftPerson, GiftPersonInput } from "../features/people/peopleTypes";
+import type {
+  GiftPerson,
+  GiftPersonInput,
+} from "../features/people/peopleTypes";
 import "./app.css";
 
 type AppView = "people" | "profile";
@@ -1271,7 +1291,10 @@ export function App() {
         <PersonProfilePage
           onBack={() => setView("people")}
           onSave={(input) => {
-            setPeople((currentPeople) => [createLocalPerson(input), ...currentPeople]);
+            setPeople((currentPeople) => [
+              createLocalPerson(input),
+              ...currentPeople,
+            ]);
             setView("people");
           }}
         />
@@ -1325,6 +1348,7 @@ git commit -m "feat: add people profile flow"
 ### Task 7: Recommendation Flow and Result Cards
 
 **Files:**
+
 - Create: `src/features/recommendations/RecommendationFlowPage.tsx`
 - Create: `src/features/recommendations/RecommendationResultPage.tsx`
 - Modify: `src/app/App.tsx`
@@ -1453,7 +1477,11 @@ Append to `src/app/app.css`:
 Modify `src/app/App.tsx` so it manages:
 
 ```ts
-type AppView = "people" | "profile" | "recommendationFlow" | "recommendationResult";
+type AppView =
+  | "people"
+  | "profile"
+  | "recommendationFlow"
+  | "recommendationResult";
 ```
 
 Add state:
@@ -1544,6 +1572,7 @@ git commit -m "feat: add recommendation flow"
 ### Task 8: Apply TDS Mobile Components
 
 **Files:**
+
 - Modify: `src/features/people/PeopleListPage.tsx`
 - Modify: `src/features/people/PersonProfilePage.tsx`
 - Modify: `src/features/recommendations/RecommendationFlowPage.tsx`
@@ -1644,6 +1673,7 @@ git commit -m "feat: apply tds mobile components"
 ### Task 9: Firebase Persistence Integration
 
 **Files:**
+
 - Modify: `src/app/App.tsx`
 - Modify: `src/features/people/peopleService.ts`
 
@@ -1731,6 +1761,7 @@ git commit -m "feat: persist people with firebase"
 ### Task 10: Apps in Toss Polish and Submission Readiness
 
 **Files:**
+
 - Modify: `src/styles/tokens.css`
 - Modify: `src/app/app.css`
 - Modify: `src/components/components.css`

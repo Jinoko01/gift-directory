@@ -21,6 +21,8 @@ export default [
       "server.mjs",
       ".next/**",
       "out/**",
+      "dist/**",
+      "dist-ssr/**",
       "build/**",
       "next-env.d.ts",
     ],
